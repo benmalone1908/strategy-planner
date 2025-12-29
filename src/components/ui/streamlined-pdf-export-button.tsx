@@ -1,32 +1,16 @@
-import { CampaignDataRow } from '@/types/campaign';
-import { ContractTermsRow } from '@/types/dashboard';
-import { PacingDeliveryData } from '@/types/pacing';
+// This component is not currently used in the strategy-planner app
+// Stubbed out to prevent build errors
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import StreamlinedPdfExportModal from "@/components/pdf/StreamlinedPdfExportModal";
-import { DateRange } from "react-day-picker";
 
 interface StreamlinedPdfExportButtonProps {
-  data: CampaignDataRow[];
-  pacingData?: PacingDeliveryData[];
-  contractTermsData?: ContractTermsRow[];
-  dateRange?: DateRange;
-  appliedFilters?: {
-    agencies: string[];
-    advertisers: string[];
-    campaigns: string[];
-  };
   showLiveOnly?: boolean;
   variant?: "default" | "outline" | "ghost" | "secondary";
   size?: "sm" | "default" | "lg";
 }
 
-const StreamlinedPdfExportButton = ({ data,
-  pacingData = [],
-  contractTermsData = [],
-  dateRange, 
-  appliedFilters, 
+const StreamlinedPdfExportButton = ({
   showLiveOnly = false,
   variant = "outline",
   size = "sm"
@@ -40,21 +24,11 @@ const StreamlinedPdfExportButton = ({ data,
         size={size}
         onClick={() => setModalOpen(true)}
         className="flex items-center gap-2"
+        disabled
       >
         <Download className="h-4 w-4" />
-        Export PDF (Streamlined)
+        Export PDF (Streamlined) (Not Available)
       </Button>
-
-      <StreamlinedPdfExportModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        data={data}
-        pacingData={pacingData}
-        contractTermsData={contractTermsData}
-        dateRange={dateRange}
-        appliedFilters={appliedFilters}
-        showLiveOnly={showLiveOnly}
-      />
     </div>
   );
 };
